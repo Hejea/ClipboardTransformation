@@ -11,12 +11,12 @@ public class Main {
     
     public static void main(String[] args) {
         if (args.length > 0) {
-            String trsf = args[0].toLowerCase();
-            // String trsf = "lower";
-            // String trsf = "proper";
-            // String trsf = "upper";
+            String transformType = args[0].toLowerCase();
+            // String transformType = "lower";
+            // String transformType = "proper";
+            // String transformType = "upper";
             
-            switch (trsf) {
+            switch (transformType) {
                 case "lower" -> LowerCase.run();
                 case "proper" -> ProperCase.run();
                 case "upper" -> UpperCase.run();
