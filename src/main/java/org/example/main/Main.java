@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 
 
+/**
+ * Transform text from clipboard in Capital, Lower, Upper case
+ */
 public class Main {
     
     public static void main(String[] args) {
