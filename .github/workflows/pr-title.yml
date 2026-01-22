@@ -1,0 +1,16 @@
+name: Auto-rename PR title
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  rename-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rename PR to "Pull Request #<PR-number> from <branch>"
+        uses: peter-evans/rename-pull-request@v3.2.0
+        with:
+          title: Pull Request #${{ github.event.pull_request.number }} from ${{ github.event.pull_request.head.ref }}
+          # Optional: leave body unchanged
+          body: ${{ github.event.pull_request.body }}
