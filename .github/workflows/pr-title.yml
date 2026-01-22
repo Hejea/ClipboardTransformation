@@ -1,16 +1,36 @@
-name: Auto-rename PR title
+name: Auto Create PR from master2
 
 on:
-  pull_request:
-    types: [opened]
+  push:
+    branches:
+      - master2   # trigger whenever master2 is updated
 
 jobs:
-  rename-pr-title:
+  create-pr:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Rename PR to "Pull Request #<PR-number> from <branch>"
-        uses: peter-evans/create-pull-request@v3.2.0
+      # 1. Checkout the repo properly
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
-          title: Pull Request #${{ github.event.pull_request.number }} from ${{ github.event.pull_request.head.ref }}
-          # Optional: leave body unchanged
-          body: ${{ github.event.pull_request.body }}
+          fetch-depth: 0   # ensures full git history
+
+      # 2. (Optional) Make automated changes
+      - name: Make automated changes
+        run: |
+          echo "Automated update on $(date)" >> changes.txt
+          git add changes.txt
+
+      # 3. Create Pull Request
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "[create-pull-request] automated change"
+          title: "Pull Request #${{ github.run_number }} from master2"
+          branch: create-pull-request/patch
+          base: master
+          delete-branch: false
+          author: Hejea <24224880+Hejea@users.noreply.github.com>
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
