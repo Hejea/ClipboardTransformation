@@ -18,6 +18,8 @@ public class Main {
             // String transformType = "lower";
             // String transformType = "proper";
             // String transformType = "upper";
+
+            System.out.println("transformType = " + transformType);
             
             switch (transformType) {
                 case "lower" -> LowerCase.run();
@@ -32,15 +34,6 @@ public class Main {
     
     public static void errorArgs() {
         System.out.println("\nWrong Args\nCases :\n\tLower\n\tProper\n\tUpper");
-    }
-    
-    public static String getClipBoard2(Clipboard clipboard) {
-        try {
-            return (String) clipboard.getData(DataFlavor.stringFlavor);
-        } catch (Exception e) {
-            // e.printStackTrace();
-        }
-        return "";
     }
     
     public static String getClipBoard(Clipboard clipboard) {

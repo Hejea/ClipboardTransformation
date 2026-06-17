@@ -41,8 +41,7 @@ public class ProperCase {
                 c = capNext ? Character.toUpperCase(c) : Character.toLowerCase(c);
             }
             sb.append(c);
-//            'sds'dsd
-            
+
             capNext = (ACTIONABLE_DELIMITERS.indexOf(c) >= 0);
         }
         return sb.toString();
